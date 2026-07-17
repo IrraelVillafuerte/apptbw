@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="styles.css?v=3">
     <!-- Iconografía moderna para botones, sensores y estados -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS de Leaflet para el mapa real -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
 
@@ -77,19 +79,9 @@
             </section>
 
             <!-- SECCIÓN DEL MAPA (Integrado en tu diseño de tarjeta) -->
-            <section class="map-section">
-                <!-- El SDK de Google Maps inicializará el mapa en este contenedor -->
-                <div id="map" class="mock-map">
-                    <div class="map-placeholder-text">
-                        <i class="fa-solid fa-map-location-dot"></i>
-                        <p>Google Maps cargando ubicaciones desde OpenAQ...</p>
-                    </div>
-                    <!-- Pines interactivos simulados -->
-                    <div class="mock-marker pin-quito" title="Quito, Ecuador"><i class="fa-solid fa-location-dot"></i></div>
-                    <div class="mock-marker pin-usa" title="Ubicaciones USA"><i class="fa-solid fa-location-dot"></i></div>
-                    <div class="mock-marker pin-europe" title="Ubicaciones Europa"><i class="fa-solid fa-location-dot"></i></div>
-                </div>
-            </section>
+           <section class="map-section">
+    <div id="map" class="mock-map"></div>
+</section>
 
             <!-- TABLA DE DISPOSITIVOS IoT -->
             <section class="table-section">
@@ -231,6 +223,23 @@
     <footer class="footer">
         <p>Powered by OpenAQ Data and Wokwi Virtual Devices (see architecture diagram)</p>
     </footer>
+<!-- Motor del mapa interactivo -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    // 1. Inicializar el mapa centrado en las coordenadas de Quito, Ecuador
+    const map = L.map('map').setView([-0.1807, -78.4678], 13);
 
+    // 2. Cargar las calles y el diseño visual desde OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+   }).addTo(map);
+
+    // 3. Agregar pines reales e interactivos a tus dispositivos Wokwi
+    L.marker([-0.1807, -78.4678]).addTo(map)
+        .bindPopup('<b>Dispositivo 01 (Quito Norte)</b><br>Sensor DHT22 - Activo.');
+
+    L.marker([-0.1930, -78.4740]).addTo(map)
+        .bindPopup('<b>Dispositivo 02 (Quito Centro)</b><br>Sensor DHT22 - Activo.');
+</script>
 </body>
 </html>
