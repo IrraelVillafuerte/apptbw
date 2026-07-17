@@ -133,11 +133,11 @@ body{
 }
 
 /* ---------- MAP CARD ---------- */
-.map-section{
-  background:#fff;
-  border:1px solid var(--borde);
-  border-radius:6px;
-  padding:10px;
+.map-section {
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  padding: 10px;
 }
 .mock-map {
   position: relative;
